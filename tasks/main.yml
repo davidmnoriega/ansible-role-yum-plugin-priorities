@@ -1,0 +1,21 @@
+---
+- name: "Install yum-plugin-priorities package"
+  yum: name=yum-plugin-priorities state=latest
+  when: ansible_distribution_major_version != "5"
+
+- name: Install yum-priorities package"
+  yum: name=yum-priorities state=latest
+  when: ansible_distribution_major_version == "5"
+
+- name: "Enable plugin"
+  ini_file: dest=/etc/yum/pluginconf.d/priorities.conf section=main option=enabled value=1
+
+- name: "Merge repo priority data"
+  set_fact: repositories="{{ repositories + additional_repos }}"
+  when: additional_repos is defined
+
+- name: "Set repository priorities"
+  ini_file: dest=/etc/yum.repos.d/{{ item.0.name }}.repo section={{ item.1.name }} option=priority value={{ item.1.priority }}
+  with_subelements:
+    - repositories
+    - priorities

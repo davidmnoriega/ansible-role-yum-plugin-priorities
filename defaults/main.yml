@@ -1,0 +1,10 @@
+---
+repositories:
+  - name: CentOS-Base
+    priorities:
+      - name: base
+        priority: 1
+      - name: updates
+        priority: 1
+      - name: extras
+        priority: 1
