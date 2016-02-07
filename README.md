@@ -23,6 +23,7 @@ None
 
 This example playbook uses the role to set the priority of the EPEL repository to a priority of 10,
 while also setting the base CentOS repositories to a priority of 1:
+
     - hosts: all
       become:
       vars:
