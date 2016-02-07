@@ -1,0 +1,18 @@
+galaxy_info:
+  author: David M Noriega
+  description: Role to manage yum repo priorities
+  license: MIT
+  min_ansible_version: 1.8
+  platforms:
+   - name: EL
+     versions:
+      - 7
+      - 6
+      - 5
+  galaxy_tags:
+    - system
+    - yum
+    - packaging
+    - centos
+
+dependencies: []
