@@ -1,0 +1,26 @@
+---
+sudo: required
+
+services:
+  - docker
+
+env:
+  - OS_VERSION=7
+  - OS_VERSION=6
+  - OS_VERSION=5
+
+before_install:
+  - sudo docker pull centos:${OS_VERSION}
+
+install:
+  - sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro --name centos-${OS_VERSION} centos:${OS_VERSION} sleep 300
+  - sudo docker exec centos-${OS_VERSION} yum -y install epel-release
+  - sudo docker exec yum -y install ansible
+
+script:
+  # Check syntax of ansible playbook
+  - sudo docker exec centos-${OS_VERSION} ansible-playbook /etc/ansible/roles/role_under_test/test.yml --syntax-check
+  # Run ansible playbook
+  - sudo docker exec centos-${OS_VERSION} ansible-playbook /etc/ansible/roles/role_under_test/test.yml
+  # Clean up
+  - sudo docker stop centos-${OS_VERSION}
