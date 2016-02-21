@@ -16,7 +16,7 @@ before_install:
 install:
   - sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/role_under_test:ro --name centos-${OS_VERSION} centos:${OS_VERSION} sleep 300
   - sudo docker exec centos-${OS_VERSION} yum -y install epel-release
-  - sudo docker exec centos-${OS-VERSION} yum -y install ansible
+  - sudo docker exec centos-${OS_VERSION} yum -y install ansible
 
 script:
   # Check syntax of ansible playbook
