@@ -8,7 +8,6 @@ services:
 env:
   - OS_VERSION=7
   - OS_VERSION=6
-  - OS_VERSION=5
 
 before_install:
   - sudo docker pull centos:${OS_VERSION}
@@ -23,5 +22,6 @@ script:
   - sudo docker exec centos-${OS_VERSION} ansible-playbook /etc/ansible/roles/yum-plugin-priorities/tests/test.yml --syntax-check
   # Run ansible playbook
   - sudo docker exec centos-${OS_VERSION} ansible-playbook /etc/ansible/roles/yum-plugin-priorities/tests/test.yml
-  # Clean up
+
+after_script:
   - sudo docker stop centos-${OS_VERSION}
