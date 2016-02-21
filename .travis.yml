@@ -20,8 +20,8 @@ install:
 
 script:
   # Check syntax of ansible playbook
-  - sudo docker exec centos-${OS_VERSION} ansible-playbook /etc/ansible/roles/role_under_test/test.yml --syntax-check
+  - sudo docker exec centos-${OS_VERSION} ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml --syntax-check
   # Run ansible playbook
-  - sudo docker exec centos-${OS_VERSION} ansible-playbook /etc/ansible/roles/role_under_test/test.yml
+  - sudo docker exec centos-${OS_VERSION} ansible-playbook /etc/ansible/roles/role_under_test/tests/test.yml
   # Clean up
   - sudo docker stop centos-${OS_VERSION}
