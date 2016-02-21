@@ -25,3 +25,6 @@ script:
 
 after_script:
   - sudo docker stop centos-${OS_VERSION}
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
