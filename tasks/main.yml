@@ -15,7 +15,11 @@
   when: additional_repos is defined
 
 - name: "Set repository priorities"
-  ini_file: dest=/etc/yum.repos.d/{{ item.0.name }}.repo section={{ item.1.name }} option=priority value={{ item.1.priority }}
+  ini_file:
+    dest: "/etc/yum.repos.d/{{ item.0.name }}.repo"
+    section: "{{ item.1.name }}"
+    option: priority
+    value: "{{ item.1.priority }}"
   with_subelements:
     - repositories
     - priorities

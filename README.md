@@ -1,5 +1,7 @@
 # yum-plugin-priorities
 
+[![Build Status](https://travis-ci.org/davidmnoriega/ansible-role-yum-plugin-priorities.svg?branch=master)](https://travis-ci.org/davidmnoriega/ansible-role-yum-plugin-priorities)
+
 Ansible role to manage yum repo priorities
 
 ## Requirements
